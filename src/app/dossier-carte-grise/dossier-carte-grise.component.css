@@ -1,0 +1,33 @@
+select.form-select {
+    margin-bottom: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  thead {
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  tbody tr:hover {
+    background-color: #eaeaea;
+  }
+  
+  tbody tr.selected {
+    background-color: red !important;
+  }
+  .selected-row {
+    background-color: red !important;
+  }

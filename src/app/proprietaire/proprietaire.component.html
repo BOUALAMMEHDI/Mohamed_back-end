@@ -1,0 +1,220 @@
+<div class="container rounded  ">
+    <!-- Centered Checkboxes in Flex Layout -->
+    <div class="d-flex justify-content-center align-items-center gap-4 mb-4">
+        <!-- Checkbox for Personne Physique -->
+        <div class="form-check">
+            <input
+                type="checkbox"
+                class="form-check-input"
+                id="physique"
+                [(ngModel)]="isPhysique"
+                (change)="onCheckboxChange('physique')"
+                [disabled]="isMorale"
+            />
+            <label class="form-check-label fw-bold" for="physique">Personne Physique</label>
+        </div>
+
+        <!-- Checkbox for Personne Morale -->
+        <div class="form-check">
+            <input
+                type="checkbox"
+                class="form-check-input"
+                id="morale"
+                [(ngModel)]="isMorale"
+                (change)="onCheckboxChange('morale')"
+                [disabled]="isPhysique"
+            />
+            <label class="form-check-label fw-bold" for="morale">Personne Morale</label>
+        </div>
+    </div>
+    <!-- is morale-->
+<div *ngIf="isMorale" class="container mt-4 p-4 shadow  rounded">
+    <!-- Row layout for initial inputs -->
+    <div class="row mb-3 justify-content-center">
+        <!-- ICE Input -->
+        <div class="col-md-3">
+            <label for="ICE" class="form-label fw-bold">ICE</label>
+            <input type="text" class="form-control" id="ICE" placeholder="ICE" />
+        </div>
+
+        <!-- RC Input -->
+        <div class="col-md-3">
+            <label for="RC" class="form-label fw-bold">RC</label>
+            <input type="text" class="form-control" id="RC" placeholder="RC" />
+        </div>
+
+        <!-- Ville RC Input -->
+        <div class="col-md-3">
+            <label for="Ville_RC" class="form-label fw-bold">Ville RC</label>
+            <!-- <input type="text" class="form-control" id="Ville_RC" placeholder="Ville RC" /> -->
+            <select required class="form-select" id="Ville_RC"  name="Ville_RC">
+                <option value="">Veuillez choisir</option>
+            </select>
+        </div>
+
+        <!-- Search Button -->
+        <div class="col-md-1 d-flex align-items-end">
+            <button type="button" class="btn btn-primary w-100" (click)="showExtraInputs_ismorale = !showExtraInputs_ismorale">
+                <i class="bi bi-search"></i> 
+                
+            </button>
+        </div>
+    </div>
+
+   <!-- Additional inputs that appear when the search button is clicked -->
+<div *ngIf="showExtraInputs_ismorale" class="container mt-4">
+    <div class="border rounded p-4 shadow-sm bg-light">
+ 
+         <!-- Row 1 of additional inputs -->
+         <div class="row mb-4 justify-content-center">
+             <div class="col-md-4">
+                 <label for="Libelle" class="form-label fw-bold text-dark">Libelle</label>
+                 <input type="text" class="form-control form-control-lg " id="Libelle" />
+             </div>
+             <div class="col-md-4">
+                 <label for="Libelle_arabe" class="form-label fw-bold text-dark">Libelle Arabe</label>
+                 <input type="text" class="form-control form-control-lg " id="Libelle_arabe" />
+             </div>
+             <div class="col-md-4">
+                 <label for="Denomination" class="form-label fw-bold text-dark">Denomination</label>
+                 <input type="text" class="form-control form-control-lg " id="Denomination"  />
+             </div>
+         </div>
+ 
+         <!-- Row 2 of additional inputs -->
+         <div class="row mb-4 justify-content-center">
+             <div class="col-md-4">
+                 <label for="Adresse" class="form-label fw-bold text-dark">Adresse</label>
+                 <input type="text" class="form-control form-control-lg " id="Adresse" />
+             </div>
+             <div class="col-md-4">
+                 <label for="Adresse_arabe" class="form-label fw-bold text-dark">Adresse Arabe</label>
+                 <input type="text" class="form-control form-control-lg " id="Adresse_arabe"  />
+             </div>
+             <div class="col-md-4">
+                 <label for="Numero_Tel" class="form-label fw-bold text-dark">Numero Tel</label>
+                 <input type="text" class="form-control form-control-lg " id="Numero_Tel"  />
+             </div>
+         </div>
+ 
+         <!-- Row 3 of additional inputs -->
+         <div class="row mb-4 justify-content-center">
+             <div class="col-md-4">
+                 <label for="Type_personne_morale" class="form-label fw-bold text-dark">Type Personne Morale</label>
+                 <select required class="form-select form-select-lg " id="Type_personne" name="Type_personne">
+                     <option value="">Veuillez choisir</option>
+                 </select>
+             </div>
+             <div class="col-md-4">
+                 <label for="Province" class="form-label fw-bold text-dark">Province</label>
+                 <select required class="form-select form-select-lg " id="Province" name="Province">
+                     <option value="">Veuillez choisir</option>
+                 </select>
+             </div>
+             <div class="col-md-4">
+                 <label for="Localite" class="form-label fw-bold text-dark">Localite</label>
+                 <input type="text" class="form-control form-control-lg " id="Localite"  />
+             </div>
+         </div>
+     </div>
+ </div>
+ 
+
+</div>
+ <!-- is physique-->
+ <div *ngIf="isPhysique" class="container mt-4 p-4 shadow  rounded">
+    <!-- Row layout for initial inputs -->
+    <div class="row mb-3 justify-content-center">
+        <!-- ICE Input -->
+        <div class="col-md-3">
+            <label for="ICE" class="form-label fw-bold">CIN</label>
+            <input type="text" class="form-control" id="CIN" placeholder="CIN" />
+        </div>
+
+        <!-- RC Input -->
+        <div class="col-md-3">
+            <label for="RC" class="form-label fw-bold">Nom</label>
+            <input type="text" class="form-control" id="Nom" placeholder="Nom" />
+        </div>
+
+        <!-- Ville RC Input -->
+        <div class="col-md-3">
+            <label for="Ville_RC" class="form-label fw-bold">Prenom</label>
+            <!-- <input type="text" class="form-control" id="Ville_RC" placeholder="Ville RC" /> -->
+            <select required class="form-select" id="Prenom"  name="Prenom">
+                <option value="">Veuillez choisir</option>
+            </select>
+        </div>
+
+        <!-- Search Button -->
+        <div class="col-md-1 d-flex align-items-end">
+            <button type="button" class="btn btn-primary w-100" (click)="showExtraInputs_isphysique = !showExtraInputs_isphysique">
+                <i class="bi bi-search"></i> 
+                
+            </button>
+        </div>
+    </div>
+
+   <!-- Additional inputs that appear when the search button is clicked -->
+<div *ngIf="showExtraInputs_isphysique" class="container mt-4">
+    <div class="border rounded p-4 shadow-sm bg-light">
+ 
+         <!-- Row 1 of additional inputs -->
+         <div class="row mb-4 justify-content-center">
+             <div class="col-md-4">
+                 <label for="Type Identité" class="form-label fw-bold text-dark">Type Identité</label>
+                 <input type="text" class="form-control form-control-lg " id="Type_Identité" />
+             </div>
+             
+             <div class="col-md-4">
+                 <label for="Province" class="form-label fw-bold text-dark">Province</label>
+                 <input type="text" class="form-control form-control-lg " id="Province"  />
+             </div>
+             <div class="col-md-4">
+                <label for="Nom Arabe" class="form-label fw-bold text-dark">Nom Arabe</label>
+                <input type="text" class="form-control form-control-lg " id="Nom_Arabe"  />
+            </div>
+         </div>
+ 
+         <!-- Row 2 of additional inputs -->
+         <div class="row mb-4 justify-content-center">
+        
+             
+             <div class="col-md-4">
+                <label for="Prenom Arabe" class="form-label fw-bold text-dark">Prenom Arabe</label>
+                <select required class="form-select form-select-lg " id="Prenom_Arabe" name="Prenom_Arabe">
+                    <option value="">Veuillez choisir</option>
+                </select>
+            </div>
+           
+             <div class="col-md-4">
+                <label for="Numero Tel" class="form-label fw-bold text-dark">Numero Tel </label>
+                <input type="text" class="form-control form-control-lg " id="Numero_Tel"  />
+            </div>
+            <div class="col-md-4">
+                <label for="Adresse Arabe" class="form-label fw-bold text-dark">Adresse Arabe</label>
+                <input type="text" class="form-control form-control-lg " id="Adresse_Arabe"  />
+            </div>
+         </div>
+ 
+         <!-- Row 3 of additional inputs -->
+         <div class="row mb-4 justify-content-center">
+           
+          
+            <div class="col-md-4">
+                <label for="Adresse" class="form-label fw-bold text-dark">Adresse </label>
+                <input type="text" class="form-control form-control-lg " id="Adresse"  />
+            </div>
+            
+        
+         </div>
+     </div>
+ </div>
+ 
+
+</div>
+
+
+<!-- Bootstrap Icons and JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

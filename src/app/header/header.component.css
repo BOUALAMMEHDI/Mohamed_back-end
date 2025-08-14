@@ -1,0 +1,158 @@
+/* Header Wrapper */
+.app-header {
+    background-color: #ffffff; /* White background for a clean look */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    display: flex;
+    justify-content: center;
+    padding: 20px 0; /* Increased padding for better spacing */
+}
+
+/* Header Content Alignment */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between logos and title */
+    width: 90%; /* Adjust width based on design */
+    max-width: 1200px;
+}
+
+/* Logo Styles */
+.img-ministere, .img-prepac {
+    height: 100px; /* Increased height for larger logos */
+    width: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s; /* Smooth transition for hover effects */
+}
+
+.img-ministere:hover, .img-prepac:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Title Section */
+.title-section {
+    text-align: center; /* Center the title */
+    flex: 1; /* Allow it to grow and take up space */
+}
+
+/* Main Title Style */
+.titre-banniere-top2 {
+    font-size: 26px; /* Larger font size for the title */
+    font-weight: bold; /* Bold for emphasis */
+    margin: 5px 0; /* Margin for spacing */
+    color: #0056b3; /* Dark blue color for a professional look */
+}
+
+/* Subtitle Style */
+.titre-banniere-top22 {
+    font-size: 18px; /* Slightly larger font for the subtitle */
+    color: #666; /* Darker gray for subtler appearance */
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Navbar style */
+.d-flex.justify-content-end {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+::ng-deep .swal2-custom-popup {
+    height: 500px; 
+  max-height: 90vh; 
+    /* background: linear-gradient(to top right, #f7f7f7, #e0e0e0); */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  ::ng-deep .swal2-custom-title {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-bottom: 20px;
+  }
+  
+  ::ng-deep .swal-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    margin: 10px;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+    cursor: pointer;
+  }
+  
+  ::ng-deep .swal-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+  
+  ::ng-deep .swal-btn:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+  }
+  
+  ::ng-deep .swal-navbar {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  ::ng-deep .section-title {
+    font-family: 'Arial', sans-serif;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    font-weight: 600;
+  }
+  
+  ::ng-deep .swal-input {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border 0.3s;
+  }
+  
+  ::ng-deep .swal-input:focus {
+    border: 2px solid #007bff;
+    outline: none;
+  }
+  
+  ::ng-deep .section {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  ::ng-deep .btn-success {
+    background-color: #28a745;
+    color: white;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-top: 20px;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  ::ng-deep .btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+  
+  ::ng-deep .btn-success:focus {
+    outline: none;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+  }
+  

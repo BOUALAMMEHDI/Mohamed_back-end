@@ -1,0 +1,37 @@
+.error-line {
+    background-color: #f8d7da; /* Fond rouge clair */
+    color: #721c24; /* Texte rouge */
+  }
+  
+  .error-line td {
+    color: #721c24; /* Couleur du texte rouge pour chaque cellule */
+  }
+  /* Styles to mark the rows with errors */
+  .error-row {
+    background-color: red; /* Red background for rows with errors */
+    color: white; /* White text to improve contrast */
+  }
+  .duplicate-row {
+    background-color: #f8d7da; /* Light red background for duplicates */
+  }
+  /* Add a background color for duplicate rows */
+.duplicate-row {
+    background-color: #f8d7da; /* Light red background to indicate duplicates */
+  }
+  
+  .error-row {
+    color: red;
+  }
+  /* Add this to your component's CSS file */
+.duplicate-reservation {
+    background-color: red;  /* Set the background color to red */
+    color: white;           /* Set the text color to white */
+  }
+  .red-background {
+    background-color: red !important;
+    color: white !important;
+  }
+  .red-text {
+    color: red !important;
+  }
+  

@@ -1,0 +1,172 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" #vehicleForm="ngForm" class="border p-4 rounded shadow-sm">
+        <!-- 1 ligne : Marque, Type Véhicule, et Numéro de Châssis -->
+
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-md-3">
+                <label for="marque" class="form-label">Marque</label>
+                <select id="marque" class="form-select" [(ngModel)]="vehicle.marque" name="marque" required>
+                    <option value="">Select</option>
+                    <option value="Toyota">Toyota</option>
+                    <option value="Honda">Honda</option>
+                    <option value="Nissan">Nissan</option>
+                    <option value="Ford">Ford</option>
+                    <option value="Chevrolet">Chevrolet</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="typeVehicule" class="form-label">Type Véhicule</label>
+                <input type="text" class="form-control" id="typeVehicule" [(ngModel)]="vehicle.typeVehicule"
+                    name="typeVehicule" required>
+            </div>
+            <div class="col-md-3">
+                <label for="nChassis" class="form-label">N Chassis</label>
+                <input type="text" class="form-control" id="nChassis" [(ngModel)]="vehicle.nChassis" name="nChassis"
+                    required>
+            </div>
+        </div>
+        <!-- 2 ligne : Date 1ère M.E.C, Date M.E.C Maroc, et Genre -->
+
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-md-3">
+                <label for="datePremiereMec" class="form-label">Date 1ère M.E.C</label>
+                <input type="date" class="form-control" id="datePremiereMec" [(ngModel)]="vehicle.datePremiereMec"
+                    name="datePremiereMec" required>
+            </div>
+            <div class="col-md-3">
+                <label for="dateMecMaroc" class="form-label">Date M.E.C</label>
+                <input type="date" class="form-control" id="dateMecMaroc" [(ngModel)]="vehicle.dateMecMaroc"
+                    name="dateMecMaroc" required>
+            </div>
+            <div class="col-md-3">
+             
+                <label for="genre" class="form-label">Genre</label>
+                <select id="genre" class="form-select" [(ngModel)]="vehicle.genre" name="genre" required>
+                    <option value="">Select</option>
+                    <option *ngFor="let genre of genre" [value]="genre.code">
+                        {{ genre.libelle }}
+                    </option>
+                </select>
+            </div>
+
+        </div>
+        <!-- 3 ligne : Usage, Type Usage, et Modèle -->
+
+       <!-- Type Usage Dropdown -->
+       <div class="row mb-3 justify-content-center text-center">
+        <!-- Type Usage Dropdown -->
+        <div class="col-md-3">
+            <label for="Type_Usage" class="form-label">Type Usage</label>
+            <select id="Type_Usage" class="form-select" [(ngModel)]="vehicle.typeUsage" name="Type_Usage" (change)="onTypeUsageChange()" required>
+                <option value="">Select</option>
+                <option *ngFor="let Typeusage of Typeusages" [value]="Typeusage.tyUsCode">
+                    {{ Typeusage.tyUsLibe }}
+                </option>
+            </select>
+        </div>
+    
+        <!-- Usage Dropdown (loaded based on Type Usage) -->
+        <div class="col-md-3">
+            <label for="Usage" class="form-label">Usage</label>
+            <select id="Usage" class="form-select" [(ngModel)]="vehicle.usage" name="usage" required>
+                <option value="">Select</option>
+                <option *ngFor="let Usage of Usages" [value]="Usage.codeUsag">
+                    {{ Usage.libeUsag }}
+                </option>
+            </select>
+        </div>
+    
+        <!-- Modèle Input -->
+        <div class="col-md-3">
+            <label for="modele" class="form-label">Modèle</label>
+            <input type="text" class="form-control" id="modele" [(ngModel)]="vehicle.modele" name="modele" required>
+        </div>
+    </div>
+    
+
+        <!-- 4 Ligne : NB Places, P.T.A.C, et Puissance Fiscale -->
+
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-md-3">
+                <label for="nbPlaces" class="form-label">NB Places</label>
+                <input type="text" class="form-control" id="nbPlaces" [(ngModel)]="vehicle.nbPlaces" name="nbPlaces"
+                    required>
+            </div>
+            <div class="col-md-3">
+                <label for="ptac" class="form-label">P.T.A.C (Kg)</label>
+                <input type="text" class="form-control" id="ptac" [(ngModel)]="vehicle.ptac" name="ptac" required>
+            </div>
+            <div class="col-md-3">
+                <label for="puissanceFiscale" class="form-label">Puissance Fiscale</label>
+                <input type="text" class="form-control" id="puissanceFiscale" [(ngModel)]="vehicle.puissanceFiscale"
+                    name="puissanceFiscale" required>
+            </div>
+
+
+        </div>
+        <!-- 5 Ligne : P.T.R.A (Kg), Nb Cylindres, et Carburant -->
+
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-md-3">
+                <label for="ptrakg" class="form-label">P.T.R.A (Kg)</label>
+                <input type="text" class="form-control" id="ptrakg" [(ngModel)]="vehicle.ptraKg" name="ptrakg" required>
+            </div>
+            <div class="col-md-3">
+                <label for="nbCylindres" class="form-label">Nb Cylindres</label>
+                <input type="text" class="form-control" id="nbCylindres" [(ngModel)]="vehicle.nbCylindres"
+                    name="nbCylindres" required>
+            </div>
+            <div class="col-md-3">
+                <label for="carburant" class="form-label">Carburant</label>
+                <select id="carburant" class="form-select" [(ngModel)]="vehicle.carburant" name="carburant" required>
+                    <option value="">Select</option>
+                    <option *ngFor="let carburant of carburants" [value]="carburant.id_carburant">
+                        {{ carburant.libelle }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <!-- 6 Ligne : Cylindres, Puissance Effective, et N.P.V Homologation -->
+
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-md-3">
+                <label for="cylindres" class="form-label">Cylindres</label>
+                <input type="text" class="form-control" id="cylindres" [(ngModel)]="vehicle.cylindres" name="cylindres"
+                    required>
+            </div>
+
+            <div class="col-md-3">
+                <label for="puissanceEffective" class="form-label">Puissance Effective</label>
+                <input type="text" class="form-control" id="puissanceEffective" [(ngModel)]="vehicle.puissanceEffective"
+                    name="puissanceEffective" required>
+            </div>
+
+            <div class="col-md-3">
+                <label for="npvHomologation" class="form-label">N.P.V Homologation</label>
+                <input type="text" class="form-control" id="npvHomologation" [(ngModel)]="vehicle.npvHomologation"
+                    name="npvHomologation" required>
+            </div>
+
+        </div>
+        <!-- 7 Ligne : N: WW Étranger Autres et Vitesse Horaire -->
+
+        <div class="row mb-3 justify-content-center text-center">
+            <div class="col-md-6">
+                <label for="nWWEtrangerAutres" class="form-label">N: WW Etranger Autres</label>
+                <input type="text" class="form-control" id="nWWEtrangerAutres" [(ngModel)]="vehicle.nWwEtrangerAutres"
+                    name="nWWEtrangerAutres" required>
+            </div>
+
+            <div class="col-md-3">
+                <label for="vitesseHoraire" class="form-label">Vitesse Horaire</label>
+                <input type="text" class="form-control" id="vitesseHoraire" [(ngModel)]="vehicle.vitesseHoraire"
+                    name="vitesseHoraire" required>
+            </div>
+
+        </div>
+
+        <div class="text-center mt-3">
+            <button type="submit" class="btn btn-primary" [disabled]="!vehicleForm.form.valid">Enregistrer</button>
+        </div>
+    </form>
+</div>

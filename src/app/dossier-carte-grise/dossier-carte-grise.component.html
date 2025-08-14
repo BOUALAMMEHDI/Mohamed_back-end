@@ -1,0 +1,162 @@
+<div class="container ">
+    <div class="card-body">
+        <form>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label for="Ndossier" class="form-label fw-bold">N° dossier</label>
+                    <div class="d-flex align-items-center">
+                        <input type="text" class="form-control" id="Ndossier_1" [(ngModel)]="Ndossier_1"
+                            name="Ndossier" />
+                        <span class="mx-1">/</span>
+                        <input type="text" class="form-control" id="Ndossier_2" [(ngModel)]="Ndossier_2"
+                            name="Ndossier" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label for="operation" class="form-label fw-bold">Type d'Opération</label>
+                    <select id="operation" class="form-select" [(ngModel)]="selectedOperation" 
+                            [ngModelOptions]="{ standalone: true }" 
+                            (change)="onOperationChange_type(selectedOperation)">
+                      <option value="" disabled selected>Veuillez choisir</option>
+                      <option *ngFor="let operation of typeOperations" [value]="operation.tdcgcode">
+                        {{ operation.tdcglibe }} <!-- Replace with the correct property -->
+                      </option>
+                    </select>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <label for="sous-operation" class="form-label fw-bold">Nature Opération</label>
+                    <select required class="form-select" id="sous-operation" 
+                            [(ngModel)]="sousOperation" name="sousOperation">
+                      <option value="" disabled selected>Veuillez choisir</option>
+                      <option *ngFor="let sousOp of natureOperations" [value]="sousOp.tyImCode">
+                        {{ sousOp.tyImLibe }} <!-- Replace with the correct property -->
+                      </option>
+                    </select>
+                  </div>
+                  
+                <!-- <div class="col-md-3">
+                    <label for="centre" class="form-label fw-bold">Centre</label>
+                    <input type="text" class="form-control" id="centre" [(ngModel)]="centre" name="centre" />
+                </div>
+                <div class="col-md-3">
+                    <label for="province" class="form-label fw-bold">Province</label>
+                    <select id="province" class="form-select" [(ngModel)]="selectedProvince" name="province">
+                        <option value="" disabled selected>Select Province</option>
+                    </select>
+                </div> -->
+                <!-- <div class="col-md-12">
+                    <label for="entite" class="form-label fw-bold">Entité</label>
+                    <select class="form-select" [(ngModel)]="dropdownValue_entitiee" name="newDropdown" (change)="onEntiteChange()" required>
+                      <option value="" disabled selected>Select an Entite</option>
+                      <option *ngFor="let entite of entites" [value]="entite.IdEntite">{{ entite.libelle }}</option>
+                    </select>
+                  </div> -->
+                  <div class="col-md-12">
+                    <label for="entite" class="form-label fw-bold">Entité</label>
+                    <select
+                      class="form-select"
+                      [(ngModel)]="selectedEntite"
+                      (ngModelChange)="onEntiteChange()" 
+                      name="entiteDropdown"
+                      required
+                    >
+                      <!-- <option value="Select an Entité">Select an Entité</option> -->
+                      <option *ngFor="let entite of entites" [value]="entite.idEntite">
+                        {{ entite.libelle }}
+                      </option>
+                    </select>
+                  </div>
+                  
+                  
+                  
+                  
+                  
+                  
+            </div>
+             <!-- <div class="row mb-3">
+               
+              
+            </div> -->
+            <!-- <hr> -->
+            <div class="container mt-4">
+                <h5 class="text-center">Type de Véhicule &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;نوع المركبة</h5>
+                <div class="mb-4 text-center">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="nImmatriculation" name="operationType"
+                            [(ngModel)]="selectedOperation" value="nImmatriculation"
+                            (change)="onRadioChange('nImmatriculation')" checked />
+                        <label class="form-check-label" for="nImmatriculation">Véhicule à moteur &nbsp; &nbsp; مركبة ذات
+                            محرك</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="remorque" name="operationType"
+                            [(ngModel)]="selectedOperation" value="remorque" (change)="onRadioChange('remorque')" />
+                        <label class="form-check-label bold" for="remorque">Remorque &nbsp; &nbsp; مقطورة</label>
+                    </div>
+                </div>
+                <!-- <hr> -->
+                <h5 class="text-center">Numéro d'Immatriculation &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;رقم التسجيل </h5>
+                <div *ngIf="selectedOperation_Immatriculation_remoreque === 'nImmatriculation'" style="margin-left: 220px;"
+                    class="d-flex flex-column align-items-center shadow-container">
+                    <div class="row mb-4">
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" id="nInput1" [(ngModel)]="nInput1" name="nInput1"
+                                placeholder="XXXXX" required (input)="validateInput_1() "
+                                [style.color]="isInput1MaxDigits ? 'black' : 'red'" [disabled]="showLotInputs" />
+                        </div>
+                        <div class="col-md-4">
+                            <select required class="form-select" id="f1Inputs" [(ngModel)]="f1Inputs" name="f1Inputs">
+                                <option value="">Veuillez choisir</option>
+                                <option value="أ">أ</option>
+                                <option value="ب">ب</option>
+                                <option value="د">د</option>
+                                <option value="ھ">ھ</option>
+                                <option value="و">و</option>
+                                <option value="ط">ط</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" id="nInput3" [(ngModel)]="input3" placeholder="XX"
+                                required name="nInput3" required (input)="validateInput_2()"
+                                [style.color]="isInput2Valid ? 'black' : 'red'" />
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="selectedOperation_Immatriculation_remoreque === 'remorque'" style="margin-left: 261px;"
+                    class="d-flex flex-column align-items-center shadow-container">
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="remorqueInput1" [(ngModel)]="remorqueInput1"
+                                name="remorqueInput1" required placeholder="XXXXX" (input)="validateInput_1_remorque()"
+                                [style.color]="isInput1MaxDigits ? 'black' : 'red'" [disabled]="showLotInputs" />
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" id="remorqueInput2" placeholder="XX"
+                                [(ngModel)]="remorqueInput2" name="remorqueInput2" required
+                                (input)="validateInput_2_remorque()" [style.color]="isInput2Valid ? 'black' : 'red'" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="date-depot" class="form-label fw-bold">Date de Dépôt</label>
+                    <input type="date" class="form-control" id="date-depot" [(ngModel)]="dateDepot" name="dateDepot" />
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="reference" class="form-label fw-bold">Référence de Paiement</label>
+                    <input type="text" class="form-control" id="reference" [(ngModel)]="reference" name="reference" />
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-between">
+                <button (click)="openDocumentRequiredDialog()" class="btn btn-danger ">Documents introuvables</button>
+                <button type="submit" class="btn btn-primary custom-button">Suivant</button>
+            </div>
+        </form>
+    </div>
+</div>

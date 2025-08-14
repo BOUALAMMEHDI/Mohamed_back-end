@@ -1,0 +1,97 @@
+<div class="app-container d-flex flex-column min-vh-100">
+    <app-header></app-header>
+
+    <main class="flex-fill d-flex justify-content-center align-items-start">
+        <div class="container my-form">
+            <br>
+
+            <ul class="nav nav-tabs custom-tabs justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;"
+                        [ngClass]="{'active': currentComponent === 'dossierCarteGrise'}"
+                        (click)="setComponent('dossierCarteGrise')">Dossier carte grise</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;"
+                        [ngClass]="{'active': currentComponent === 'historique'}"
+                        (click)="setComponent('historique')">Historique</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;"
+                        [ngClass]="{'active': currentComponent === 'reservation'}"
+                        (click)="setComponent('reservation')">Reservation</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="cursor: pointer;"
+                        [ngClass]="{'active': currentComponent === 'consultation'}"
+                        (click)="setComponent('consultation')">Consultation</a>
+                </li>
+            </ul>
+            <div class="row mt-3">
+
+                <div class="col-md-2">
+                    <div class="list-group custom-list">
+                        <button class="list-group-item list-group-item-action"
+                            [ngClass]="{'active': currentComponent === 'dossierCarteGrise'}"
+                            [ngStyle]="{'visibility': areButtonsHidden ? 'hidden' : 'visible'}"
+                            (click)="setComponent('dossierCarteGrise')">Dossier
+
+                        </button>
+                        <button *ngIf="showDossierProprietaireButtons()" class="list-group-item list-group-item-action"
+                            [ngClass]="{'active': currentComponent === 'vehicule'}"
+                            [ngStyle]="{'visibility': areButtonsHidden ? 'hidden' : 'visible'}"
+                            (click)="setComponent('vehicule')">Véhicule
+                        </button>
+                        <button *ngIf="showDossierProprietaireButtons()" class="list-group-item list-group-item-action"
+                            [ngClass]="{'active': currentComponent === 'proprietaire'}"
+                            [ngStyle]="{'visibility': areButtonsHidden ? 'hidden' : 'visible'}"
+                            (click)="setComponent('proprietaire')">Propriétaire
+                        </button>
+                        <button *ngIf="showAcheteurButton()" class="list-group-item list-group-item-action"
+                            [ngClass]="{'active': currentComponent === 'acheteur'}"
+                            [ngStyle]="{'visibility': areButtonsHidden ? 'hidden' : 'visible'}"
+                            (click)="setComponent('acheteur')">Acheteur
+                        </button>
+
+                    </div>
+                </div>
+                <!-- Form Section -->
+
+                <div class="col-md-9 justify-content-center align-items-center">
+                    <div class="card p-5 custom-card text-center">
+                        <ng-container *ngIf="currentComponent === 'dossierCarteGrise'">
+                            <app-dossier-carte-grise></app-dossier-carte-grise>
+                        </ng-container>
+                        <ng-container *ngIf="currentComponent === 'historique'">
+                            <app-historique></app-historique>
+                        </ng-container>
+                        <ng-container *ngIf="currentComponent === 'reservation'">
+                            <app-reservation></app-reservation>
+                        </ng-container>
+                        <ng-container *ngIf="currentComponent === 'consultation'">
+                            <app-consultation></app-consultation>
+                        </ng-container>
+                        <ng-container *ngIf="currentComponent === 'vehicule'">
+                            <app-vehicule></app-vehicule>
+                        </ng-container>
+                        <ng-container *ngIf="currentComponent === 'proprietaire'">
+                            <app-proprietaire></app-proprietaire>
+                        </ng-container>
+                        <ng-container *ngIf="currentComponent === 'acheteur'">
+                            <app-acheteur></app-acheteur>
+                        </ng-container>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container text-center">
+            <p style="font-size: 15px; font-weight: 600;padding-right: 5px;">Av. AL Arâar, Hay Riad – Rabat <span
+                    style="font-size: 17px;">© 2024</span> </p>
+        </div>
+    </footer>
+</div>

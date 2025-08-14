@@ -1,0 +1,186 @@
+<div class="container">
+    <div class="card p-4">
+        <form #operationForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="row mb-4 text-center">
+                <div class="col-md-12">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" id="nImmatriculation"
+                            [(ngModel)]="isNImmatriculation" name="nImmatriculation" (change)="resetForm()"
+                            [disabled]="isMatriculeRemorque">
+                        <label class="form-check-label fw-bold" for="nImmatriculation">N Immatriculation</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" id="matriculeRemorque"
+                            [(ngModel)]="isMatriculeRemorque" name="matriculeRemorque" (change)="resetForm()"
+                            [disabled]="isNImmatriculation">
+                        <label class="form-check-label fw-bold" for="matriculeRemorque">Matricule Remorque</label>
+                    </div>
+                </div>
+
+            </div>
+            <div *ngIf="isNImmatriculation" class="row g-3">
+                <div class="col-md-12">
+                    <label for="entite" class="form-label fw-bold">Entité</label>
+                    <select class="form-select" id="entite" (change)="onDropdownChange($event)"
+                        [(ngModel)]="selectedValue" name="entiteDropdown" required>
+                        <option [value]="entite.idEntite" *ngFor="let entite of entites">
+                            {{ entite.libelle }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-md-4" *ngIf="!showLotInputs">
+                    <input type="text" class="form-control" [(ngModel)]="input1" name="input1" placeholder="XXXXX"
+                        (input)="validateInput_1()" [style.color]="isInput1MaxDigits ? 'black' : 'red'"
+                        [disabled]="showLotInputs">
+                    <div *ngIf="isInput1MaxDigits" class="text-danger mt-1"></div>
+                </div>
+                <div class="col-md-4" *ngIf="!showLotInputs">
+                    <select class="form-select" [(ngModel)]="dropdownValue" name="dropdownValue" required>
+                        <option value="" disabled selected></option>
+                        <option value="أ">أ</option>
+                        <option value="ب">ب</option>
+                        <option value="د">د</option>
+                        <option value="ھ">ھ</option>
+                        <option value="و">و</option>
+                        <option value="ط">ط</option>
+                    </select>
+                </div>
+                <div class="col-md-4" *ngIf="!showLotInputs">
+                    <input type="text" class="form-control" [(ngModel)]="input2" placeholder="XX" name="input2" required
+                        (input)="validateInput_2()" [style.color]="isInput2Valid ? 'black' : 'red'">
+                    <div *ngIf="!isInput2Valid" class="text-danger mt-1"></div>
+                </div>
+                    <div class="d-flex align-items-center gap-3 mt-3">
+                        <!-- Lot Checkbox -->
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="lotCheckbox" [(ngModel)]="showLotInputs" name="lotCheckbox">
+                            <label class="form-check-label fw-bold " for="lotCheckbox">Lot</label>
+                        </div>
+                    
+                        <!-- Conditional Inputs -->
+                        <div class="row flex-nowrap g-2" *ngIf="showLotInputs && isNImmatriculation" style="flex: 1;">
+                            <!-- De Input -->
+                            <div class="col-md-2">
+                                <label for="deInput" class="form-label fw-bold">De</label>
+                                <input type="number" class="form-control" id="deInput" [(ngModel)]="input3" name="input3">
+                            </div>
+                    
+                            <!-- A Input -->
+                            <div class="col-md-2">
+                                <label for="aInput" class="form-label fw-bold">A</label>
+                                <input type="number" class="form-control" id="aInput" [(ngModel)]="input4" name="input4">
+                            </div>
+                    
+                            <!-- Dropdown -->
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold"><br></label>
+                                <select class="form-select" [(ngModel)]="dropdownValue" name="dropdownValue" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="أ">أ</option>
+                                    <option value="ب">ب</option>
+                                    <option value="د">د</option>
+                                    <option value="ھ">ھ</option>
+                                    <option value="و">و</option>
+                                    <option value="ط">ط</option>
+                                </select>
+                            </div>
+                    
+                            <!-- Placeholder Input -->
+                            <div class="col-md-2">
+                                <label class="form-label fw-bold"><br></label>
+                                <input type="text" class="form-control" [(ngModel)]="input2" placeholder="XX" name="input2" required
+                                    (input)="validateInput_2()" [style.color]="isInput2Valid ? 'black' : 'red'">
+                            </div>
+                    
+                            <!-- Validate Button -->
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button type="button" class="btn btn-primary shadow w-100"
+                                    (click)="generateList_Immatriculation()" [disabled]="!dropdownValue || !input2">Afficher</button>
+                            </div>
+
+                            
+                        </div>
+                    
+
+
+                  
+                </div>
+                <div *ngIf="generatedList.length > 0 && isNImmatriculation" class="table-responsive"
+                    style="max-height: 160px; overflow-y: auto;">
+                    <table class="table table-bordered border-light">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of generatedList">
+                                <td [ngClass]="{'red-text': item.hasDuplicate}">{{ item.input3 }}</td>
+                                <td [ngClass]="{'red-text': item.hasDuplicate}">{{ item.dropdown }}</td>
+                                <td [ngClass]="{'red-text': item.hasDuplicate}">{{ item.input2 }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div *ngIf="isMatriculeRemorque" class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" [(ngModel)]="input1_remorque" name="input1_remorque"
+                        placeholder="XXXXX" (input)="validateInput_1_remorque()"
+                        [style.color]="isInput1MaxDigits ? 'black' : 'red'" [disabled]="showLotInputs">
+                    <div *ngIf="isInput1MaxDigits" class="text-danger mt-1"></div>
+                </div>
+
+                <div class="col-md-6">
+                    <input type="text" class="form-control" [(ngModel)]="input3_remorque" placeholder="XX"
+                        name="input2_remorque" required (input)="validateInput_3_remorque()"
+                        [style.color]="isInput2Valid ? 'black' : 'red'">
+                    <div *ngIf="!isInput2Valid" class="text-danger mt-1"></div>
+                </div>
+            </div>
+
+            <div *ngIf="showLotInputs && isMatriculeRemorque" class="row mb-4 g-3">
+                <div class="col-md-3">
+                    <label for="deInput" class="form-label fw-bold">De</label>
+                    <input type="number" class="form-control" id="deInput" [(ngModel)]="input3" name="input3">
+                </div>
+                <div class="col-md-3">
+                    <label for="aInput" class="form-label fw-bold">A</label>
+                    <input type="number" class="form-control" id="aInput" [(ngModel)]="input4" name="input4">
+                </div>
+                <div class="col-md-3 d-flex align-items-end">
+                    <!-- (click)="generateList_Remorque()" -->
+                    <button type="button" class="btn btn-primary w-100 shadow " 
+                        [disabled]="!input3 || !input4 || !input3_remorque">Valider</button>
+                </div>
+
+                <div *ngIf="generatedList.length > 0" class="table-responsive"
+                    style="max-height: 160px; overflow-y: auto;">
+                    <table class="table table-bordered border-light">
+                        <thead class="table-primary text-center">
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of generatedList">
+                                <td class="font-weight-bold" style="font-size: 1.2em;">{{ item.input3 }}</td>
+                                <td class="font-weight-bold" style="font-size: 1.2em;">{{ item.input2 }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mt-4 d-flex justify-content-between" *ngIf="isNImmatriculation || isMatriculeRemorque">
+                <button type="button" class="btn btn-primary rounded-3 w-100 custom-button"
+                    (click)="Reserver()">Reserver</button>
+                <button type="button" class="btn btn-danger rounded-3 w-100" (click)="Vider()">Vider</button>
+            </div>
+        </form>
+    </div>
+</div>

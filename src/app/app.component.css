@@ -1,0 +1,73 @@
+.custom-tabs {
+    margin-bottom: 20px; /* Spacing below the tabs */
+}
+
+.custom-tabs .nav-link {
+    color: #5a67d8; /* Tab text color */
+    border: 1px solid #5a67d8; /* Border around the tabs */
+    border-radius: 0; /* Remove border radius for a flat design */
+    padding: 10px 15px; /* Adjust padding for better spacing */
+    margin: 0 5px; /* Space between tabs */
+}
+
+.custom-tabs .nav-link.active {
+    background-color: #5a67d8; /* Active tab background */
+    color: #ffffff; /* Active tab text color */
+    border-color: #5a67d8; /* Active border color */
+}
+
+.custom-tabs .nav-link:hover {
+    background-color: #4c51bf; /* Hover effect for tabs */
+    color: #ffffff; /* Hover text color */
+}
+
+.custom-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+}
+
+.custom-list .list-group-item {
+    border: 1px solid #5a67d8; /* Button-like border */
+    border-radius: 5px; /* Rounded corners for list items */
+    margin-bottom: 10px; /* Space between list items */
+    padding: 10px 20px; /* Adjust padding for button appearance */
+    width: 100%; /* Full width */
+    text-align: center; /* Center text */
+    background-color: #ffffff; /* Background color for list items */
+    color: #5a67d8; /* Text color */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover */
+}
+
+.custom-list .list-group-item:hover {
+    background-color: #5a67d8; /* Background color on hover */
+    color: #ffffff; /* Text color on hover */
+}
+
+.custom-list .list-group-item.active {
+    background-color: #5a67d8; /* Active list item background */
+    color: #ffffff; /* Active text color */
+}
+
+.custom-card {
+    border: 1px solid #ddd; /* Card border */
+    border-radius: 10px; /* Rounded card corners */
+}
+
+.footer {
+    background-color: #f8f9fa; /* Footer background color */
+    border-top: 1px solid #e9ecef; /* Top border */
+}
+
+.list-group-item:disabled {
+    background-color: #e9ecef; /* Background color for disabled state */
+    color: #6c757d; /* Text color for disabled state */
+    cursor: not-allowed; /* Change cursor to indicate it’s not clickable */
+    opacity: 0.65; /* Slightly faded appearance */
+    border-color: #dee2e6; /* Border color for disabled state */
+}
+
+/* Optional: change the hover effect for disabled buttons */
+.list-group-item:disabled:hover {
+    background-color: #e9ecef; /* Keep same background color on hover */
+}
